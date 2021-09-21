@@ -11,11 +11,8 @@ export default function Product({
 }) {
   return (
     <div className="m-2 p-4 col-span-1 shadow cursor-pointer  space-y-4">
-      <div className="">
-        <img
-          className="w-48 h-48 justify-self-center text-center"
-          src={image}
-        />
+      <div className="flex justify-center">
+        <img className="w-48 h-48" src={image} />
       </div>
       <div>
         <p className="text-center">{title}</p>
