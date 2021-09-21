@@ -3,4 +3,5 @@ export default constants = {
   USER: "USER",
   PRODUCTS: "PRODUCTS",
   CATEGORIES: "CATEGORIES",
+  CART: "CART",
 };

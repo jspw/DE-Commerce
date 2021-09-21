@@ -28,4 +28,18 @@ export default function LocalStorage() {
   function clearCategories() {
     localStorage.removeItem(constants.CATEGORIES);
   }
+
+  function saveCart(cart) {
+    localStorage.setItem(constants.CART, cart);
+  }
+
+  function getCart() {
+    const cart = localStorage.getItem(constants.CART);
+
+    return cart || null;
+  }
+
+  function clearCart() {
+    localStorage.removeItem(constants.CART);
+  }
 }
