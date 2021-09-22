@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <div className="container m-auto bg-white p-4 flex flex-row justify-between  items-center shadow">
+    <div className="container m-auto bg-blue-200 p-4 flex flex-row justify-between  items-center shadow">
       <div className="flex flex-row space-x-2 items-center ">
         <Link to="/">
           <img
-            className="rounded-full h-14 w-14 cursor-pointer shadow p-2"
+            className="rounded-full h-14 w-14 cursor-pointer shadow"
             src="https://avatars.githubusercontent.com/u/17194757?s=200&v=4"
           />
         </Link>
@@ -33,11 +33,11 @@ export default function NavBar() {
             </span>
           </button>
         </div>
-        {/* <div>
-          <button className="btn font-medium border-gray-300 border-2 rounded p-2">
+        <div>
+          <button className="btn font-medium border-white border-2 text-black rounded p-2">
             Sign In
           </button>
-        </div> */}
+        </div>
       </div>
     </div>
   );
