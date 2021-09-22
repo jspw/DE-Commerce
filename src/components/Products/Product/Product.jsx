@@ -3,9 +3,7 @@ import {
   LazyLoadComponent,
 } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-
 import defaultProductImage from "../../../assets/images/default_product.png";
-
 export default function Product({
   product: {
     id,
@@ -20,11 +18,12 @@ export default function Product({
   return (
     <LazyLoadComponent>
       <div className="m-2 p-4 col-span-1 shadow cursor-pointer  space-y-4">
-        <div className="flex justify-content-center">
+        <div className="flex justify-center">
           <LazyLoadImage
-            alt={title}
+            // alt={title}
             src={image}
-            effect="blur"
+            effect="blue"
+            placeholderSrc={defaultProductImage}
             className="w-48 h-48"
           />
         </div>
