@@ -33,11 +33,11 @@ export default function NavBar() {
             </span>
           </button>
         </div>
-        <div>
+        {/* <div>
           <button className="btn font-medium border-gray-300 border-2 rounded p-2">
             Sign In
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

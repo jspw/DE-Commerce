@@ -1,3 +1,11 @@
+import {
+  LazyLoadImage,
+  LazyLoadComponent,
+} from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
+import defaultProductImage from "../../../assets/images/default_product.png";
+
 export default function Product({
   product: {
     id,
@@ -10,21 +18,25 @@ export default function Product({
   },
 }) {
   return (
-    <div className="m-2 p-4 col-span-1 shadow cursor-pointer  space-y-4">
-      <div className="">
-        <img
-          className="w-48 h-48 justify-self-center text-center"
-          src={image}
-        />
-      </div>
-      <div>
-        <p className="text-center">{title}</p>
-      </div>
+    <LazyLoadComponent>
+      <div className="m-2 p-4 col-span-1 shadow cursor-pointer  space-y-4">
+        <div className="flex justify-content-center">
+          <LazyLoadImage
+            alt={title}
+            src={image}
+            effect="blur"
+            className="w-48 h-48"
+          />
+        </div>
+        <div>
+          <p className="text-center">{title}</p>
+        </div>
 
-      <div className="flex flex-row justify-between space-x-2">
-        <div>${price}</div>
-        <p>{rating}</p>
+        <div className="flex flex-row justify-between space-x-2">
+          <div>${price}</div>
+          <p>{rating}</p>
+        </div>
       </div>
-    </div>
+    </LazyLoadComponent>
   );
 }
