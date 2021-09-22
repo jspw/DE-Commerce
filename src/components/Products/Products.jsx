@@ -44,9 +44,12 @@ export default function Products() {
   }, []);
 
   return (
-    <div className="space-y-4 mt-4">
-      <p className="text-2xl font-semibold font-serif"> Products </p>
-      <hr />
+    <div className="space-y-4 mt-8">
+      <div className="bg-white sticky top-8 z-20 space-y-4">
+        <p className="text-2xl font-semibold  font-serif ">Products</p>
+        <hr />
+      </div>
+
       {products ? (
         products.length === 0 ? (
           <div className="text-yellow-300 text-2xl text-center">

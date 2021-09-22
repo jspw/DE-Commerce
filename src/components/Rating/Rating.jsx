@@ -4,8 +4,8 @@ export default function Rating({ rating }) {
       <p className="text-yellow-400 font-medium">{rating}</p>
       <i
         className={`text-yellow-400  ${
-          rating >= 4 ? "fa fa-star" : "fa fa-star-half-full"
-        } contrast-75`}
+          rating >= 4 ? "fa fa-star" : "fa fa-star-half-empty"
+        } `}
       ></i>
     </div>
   );
