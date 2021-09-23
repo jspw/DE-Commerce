@@ -29,6 +29,5 @@ export function deleteProductFromCart(id) {
   const updatedCartProducts = cart.products.filter(
     (product) => product.id != id
   );
-  console.log(updatedCartProducts);
   localStore.saveCart(cartFormate(updatedCartProducts));
 }

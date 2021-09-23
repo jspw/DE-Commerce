@@ -33,6 +33,7 @@ export default function Product({
           product.cartCount--;
           deleteProductFromCart(product.id);
         }
+        
       }
       return product;
     });

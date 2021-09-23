@@ -22,8 +22,8 @@ module.exports = {
         },
       },
       animation: {
-        slideIn: "slideIn 0.4s",
-        fadeIn: "fadeIn 0.4s",
+        slideIn: "slideIn 0.5s",
+        fadeIn: "fadeIn 0.5s",
       },
     },
   },

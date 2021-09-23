@@ -9,8 +9,6 @@ import * as localStore from "../../utility/services/localStorage/localStore";
 export default function NavBar() {
   const cart = localStore.getCart();
 
-  console.log(cart);
-
   const [showMobileOption, setShowMobileOption] = useState(false);
 
   const [showCartModal, setShowCartModal] = useState(false);

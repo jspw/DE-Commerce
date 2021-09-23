@@ -44,7 +44,7 @@ export default function Products() {
   }, []);
 
   return (
-    <div className="space-y-4 mt-8">
+    <div className="space-y-4 mt-8 ">
       <div className="bg-white sticky top-8 z-20 space-y-4">
         <p className="text-2xl font-semibold  font-serif ">Products</p>
         <hr />
