@@ -14,6 +14,8 @@ export function cartFormate(products) {
     (product) => (payableAmount += product.price * product.cartCount)
   );
 
+  if (payableAmount === 0) return null;
+
   return {
     id: Date.now() + Math.random(),
     products,
