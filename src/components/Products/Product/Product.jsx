@@ -12,6 +12,7 @@ import {
 import Rating from "../../Rating/Rating";
 import StarRatings from "react-star-ratings";
 import * as localStore from "../../../utility/services/localStorage/localStore";
+import { cartFormate, cartProductFormate } from "../../../utility/cartFormate";
 
 export default function Product({
   product: { id, title, description, price, image, cartCount, rating, reviews },
@@ -19,11 +20,40 @@ export default function Product({
   const { products } = useContext(ProductsContext);
   const { setProducts } = useContext(ProductsActionContext);
 
+  function addProductToCart(product) {
+    const cart = localStore.getCart();
+
+    if (cart === null) {
+      const updatedCart = cartFormate([cartProductFormate(product)]);
+      console.log(updatedCart);
+      localStore.saveCart(updatedCart);
+    } else {
+      let productAlreadyExists = false;
+
+      const updatedCartProducts = cart.products.map((prod) => {
+        if (prod.id === product.id) {
+          productAlreadyExists = true;
+          return product;
+        }
+      });
+
+      console.log(updatedCartProducts);
+
+      if (productAlreadyExists)
+        localStore.saveCart(cartFormate(updatedCartProducts));
+      else localStore.saveCart(cartFormate([...cart.products, product]));
+
+      console.log(localStore.getCart());
+    }
+  }
+
   function handleCart(actionType) {
     const updatedProducts = products.map((product) => {
       if (product.id === id) {
-        if (actionType === "add") product.cartCount++;
-        else if (actionType === "remove") product.cartCount--;
+        if (actionType === "add") {
+          product.cartCount++;
+          addProductToCart(product);
+        } else if (actionType === "remove") product.cartCount--;
       }
       return product;
     });
@@ -64,7 +94,7 @@ export default function Product({
           <div className="space-y-4 flex flex-col items-center">
             <StarRatings
               rating={rating}
-              starRatedColor="yellow"
+              starRatedColor="blue"
               numberOfStars={5}
               starDimension="20px"
               starSpacing="2px"

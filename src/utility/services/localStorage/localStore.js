@@ -35,7 +35,7 @@ export function saveCart(cart) {
 export function getCart() {
   const cart = localStorage.getItem(constants.CART);
 
-  return JSON.parse(cart) || [];
+  return JSON.parse(cart) || null;
 }
 
 export function clearCart() {
