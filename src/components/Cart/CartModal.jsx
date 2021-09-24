@@ -28,12 +28,14 @@ export default function CartModal({ showCartModal, handleCartModal }) {
           <CartItems />
         </div>
 
-        <div className="flex flex-col sticky bottom-0">
-          <button className="flex flex-row justify-between btn bg-blue-400 rounded font-semibold text-white ml-2 mr-2 mt-2 p-2">
-            <p> Order Now</p>
-            <p className="font-bold">${Math.round(cart.payableAmount)}</p>
-          </button>
-        </div>
+        {cart && (
+          <div className="flex flex-col sticky bottom-0">
+            <button className="flex flex-row justify-between btn bg-blue-400 rounded font-semibold text-white ml-2 mr-2 mt-2 p-2">
+              <p> Order Now</p>
+              <p className="font-bold">${Math.round(cart.payableAmount)}</p>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
