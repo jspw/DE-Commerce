@@ -10,23 +10,25 @@ export default function CartItem({
   const { handleCart } = useContext(ShopContext);
 
   return (
-    <div className="flex flex-row justify-between items-center m-2 p-2">
+    <div className="flex flex-row justify-between items-center m-2 p-2 shadow">
       <div className="flex flex-row space-x-2 items-center justify-around align-center">
-        <div className="flex justify-center border w-16 h-16 text-center">
+        <div>
           <LazyLoadImage
             src={image}
             effect="blur"
+            width="64px"
+            height="64px"
             className="rounded-lg p-1 object-fill"
           />
         </div>
 
         <div className="space-y-1">
           <div>
-            <p className="text-sm text-gray-500 font-serif">{title}</p>
+            <div className="text-sm text-gray-500 font-serif">{title}</div>
           </div>
           <div className="flex flex-row space-x-1 text-sm font-medium">
-            <p className="">${price}</p>
-            <p>x</p> <p>{cartCount}</p>
+            <div className="">${price}</div>
+            <div>x</div> <div>{cartCount}</div>
           </div>
           <div className="flex flex-row space-x-2 text-sm">
             <button
@@ -35,7 +37,7 @@ export default function CartItem({
             >
               -
             </button>
-            <p>{cartCount}</p>
+            <div>{cartCount}</div>
             <button
               onClick={() => handleCart(cartActions.INCREASE_QUANTITY, id)}
               className="border pl-3 pr-3"

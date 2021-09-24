@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import { ShopContext } from "../../Context/shopContext";
 import CartItems from "./CartItems";
 
 export default function CartModal({ showCartModal, handleCartModal }) {
+  const { cart } = useContext(ShopContext);
   return (
     <div
       id="modal"
@@ -26,8 +29,9 @@ export default function CartModal({ showCartModal, handleCartModal }) {
         </div>
 
         <div className="flex flex-col sticky bottom-0">
-          <button className="btn bg-blue-400 rounded font-semibold text-white ml-2 m-r-2 mt-2 p-2">
-            Order Now
+          <button className="flex flex-row justify-between btn bg-blue-400 rounded font-semibold text-white ml-2 mr-2 mt-2 p-2">
+            <p> Order Now</p>
+            <p className="font-bold">${Math.round(cart.payableAmount)}</p>
           </button>
         </div>
       </div>
