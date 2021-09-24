@@ -20,7 +20,7 @@ export default function Products() {
             No Products Available
           </div>
         ) : (
-          <div className="grid grid-flow-row xs:grid-cols-1 sm : grid-cols-2  md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 ">
+          <div className="grid grid-flow-row grid-cols-5 xs:grid-cols-1 sm:grid-cols-2  md:grid-cols-2  lg:grid-cols-4 xl:grid-cols-5 ">
             {products.map((product) => (
               <Product key={product.id} product={product} />
             ))}
