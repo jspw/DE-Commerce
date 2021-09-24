@@ -4,7 +4,7 @@ import contextTypes from "./utils/constants";
 import * as localStore from "../utility/services/localStorage/localStore";
 
 export const ProductsContext = createContext();
-export const ProductsActionContext = createContext();
+// export const ProductsActionContext = createContext();
 
 // export function factoryUseContext(contextName, context) {
 //   const ctx = useContext(context);
@@ -32,10 +32,8 @@ export default function ProductsContextProvider({ children }) {
   const [products, setProducts] = useState(localProducts);
 
   return (
-    <ProductsContext.Provider value={{ products }}>
-      <ProductsActionContext.Provider value={{ setProducts }}>
-        {children}
-      </ProductsActionContext.Provider>
+    <ProductsContext.Provider value={{ products, setProducts }}>
+      {children}
     </ProductsContext.Provider>
   );
 }

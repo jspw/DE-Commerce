@@ -1,48 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { getProducts } from "../../api/products";
+import { useContext } from "react";
 import MyLoader from "../Loader/MyLoader";
 import Product from "./Product/Product";
-import * as localStore from "../../utility/services/localStorage/localStore";
-import {
-  ProductsActionContext,
-  ProductsContext,
-} from "../../Context/ProductsContext";
-import productFormate from "../../utility/productFormate";
+import { ShopContext } from "../../Context/shopContext";
 
 export default function Products() {
-  const { products } = useContext(ProductsContext);
-
-  const { setProducts } = useContext(ProductsActionContext);
-
-  function formattingData(products) {
-    const prods = [];
-    const categories = []; // should i use a map here ? its searching complexity is 1
-    products.forEach(function (product) {
-      // take a array of categories and then using `newCat =  [...set()] will be a good idea?
-      // complexity of set ?
-      if (!categories.includes(product.category))
-        categories.push(product.category); // so inserting categories will cost me about n*n ?`
-
-      prods.push(productFormate(product));
-    });
-
-    localStore.saveCategories(categories);
-    localStore.saveProducts(prods);
-    localStore.setUserOld(true);
-    setProducts(prods);
-  }
-
-  useEffect(function () {
-    if (!localStore.isUserOld())
-      getProducts()
-        .then(function (response) {
-          formattingData(response.data);
-        })
-        .catch(function (error) {
-          console.log(error.response);
-        });
-  }, []);
-
+  const { products } = useContext(ShopContext);
   return (
     <div className="space-y-4 mt-8 ">
       <div className="bg-white sticky top-8 z-20 space-y-4">

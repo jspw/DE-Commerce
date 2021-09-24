@@ -1,36 +1,54 @@
+import { useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { ShopContext } from "../../Context/shopContext";
+import { cartActions } from "../../utility/cart/constants";
 
 export default function CartItem({
-  product: { title, image, cartCount, price },
+  product: { id, title, image, cartCount, price },
+  setCart,
 }) {
+  const { handleCart } = useContext(ShopContext);
+
   return (
     <div className="flex flex-row justify-between items-center m-2 p-2">
       <div className="flex flex-row space-x-2 items-center justify-around align-center">
-        <div className="flex justify-center border">
+        <div className="flex justify-center border w-16 h-16 text-center">
           <LazyLoadImage
             src={image}
             effect="blur"
-            className="w-16 h-16 rounded-lg p-1"
+            className="rounded-lg p-1 object-fill"
           />
         </div>
 
         <div className="space-y-1">
           <div>
-            <p className="text-base text-gray-500 font-serif">{title}</p>
+            <p className="text-sm text-gray-500 font-serif">{title}</p>
           </div>
-          <div className="flex flex-row space-x-1 text-base font-medium">
+          <div className="flex flex-row space-x-1 text-sm font-medium">
             <p className="">${price}</p>
             <p>x</p> <p>{cartCount}</p>
           </div>
-          <div className="flex flex-row space-x-2">
-            <button className="border pl-3 pr-3">-</button>
+          <div className="flex flex-row space-x-2 text-sm">
+            <button
+              onClick={() => handleCart(cartActions.DECREASE_QUANTITY, id)}
+              className="border pl-3 pr-3"
+            >
+              -
+            </button>
             <p>{cartCount}</p>
-            <button className="border pl-3 pr-3">+</button>
+            <button
+              onClick={() => handleCart(cartActions.INCREASE_QUANTITY, id)}
+              className="border pl-3 pr-3"
+            >
+              +
+            </button>
           </div>
         </div>
       </div>
       <div>
-        <i className="fa fa-trash text-red-600 p-2"></i>
+        <button onClick={() => handleCart(cartActions.REMOVE_ITEM, id)}>
+          <i className="fa fa-trash text-red-600 p-2"></i>
+        </button>
       </div>
     </div>
   );

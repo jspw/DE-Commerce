@@ -4,56 +4,14 @@ import {
   LazyLoadComponent,
 } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import defaultProductImage from "../../../assets/images/default_product.png";
-import {
-  ProductsActionContext,
-  ProductsContext,
-} from "../../../Context/ProductsContext";
-import Rating from "../../Rating/Rating";
 import StarRatings from "react-star-ratings";
-import * as localStore from "../../../utility/services/localStorage/localStore";
-import {
-  addProductToCart,
-  deleteProductFromCart,
-} from "../../../utility/cart/cartActions";
+import { cartActions } from "../../../utility/cart/constants";
+import { ShopContext } from "../../../Context/shopContext";
 
 export default function Product({
-  product: { id, title, description, price, image, cartCount, rating, reviews },
+  product: { id, title, price, image, cartCount, rating },
 }) {
-  const { products } = useContext(ProductsContext);
-  const { setProducts } = useContext(ProductsActionContext);
-
-  function handleCart(actionType) {
-    const updatedProducts = products.map((product) => {
-      if (product.id === id) {
-        if (actionType === "add") {
-          product.cartCount++;
-          addProductToCart(product);
-        } else if (actionType === "remove") {
-          product.cartCount--;
-          deleteProductFromCart(product.id);
-        }
-        
-      }
-      return product;
-    });
-    setProducts(updatedProducts);
-    localStore.saveProducts(updatedProducts);
-
-    // setProducts((products) => {
-    //   const pd = products.map((product) => {
-    //     if (product.id === id) {
-    //       console.log(product.cartCount);
-    //       product.cartCount++;
-    //       console.log(product.cartCount);
-    //     }
-    //     return product;
-    //   });
-    //   console.log(pd);
-    //   return pd;
-    // });
-  }
-
+  const { handleCart } = useContext(ShopContext);
   return (
     <LazyLoadComponent>
       <div className="m-2 p-2 col-span-1 cursor-pointer flex flex-col justify-between  hover:shadow-2xl rounded-lg ">
@@ -85,13 +43,13 @@ export default function Product({
               <div className="flex flex-row justify-between border rounded-md p-2 bg-blue-400 items-baseline">
                 <button
                   className="btn text-white "
-                  onClick={() => handleCart("remove")}
+                  onClick={() => handleCart(cartActions.DECREASE_QUANTITY, id)}
                 >
                   <i className="	fas fa-cart-arrow-down"></i>
                 </button>
                 <p className="text-white font-medium">{cartCount} in cart</p>
                 <button
-                  onClick={() => handleCart("add")}
+                  onClick={() => handleCart(cartActions.INCREASE_QUANTITY, id)}
                   className="btn text-white"
                 >
                   <i className="fas fa-cart-plus"></i>
@@ -99,7 +57,7 @@ export default function Product({
               </div>
             ) : (
               <button
-                onClick={() => handleCart("add")}
+                onClick={() => handleCart(cartActions.ADD_ITEM, id)}
                 className="btn text-blue-400 border rounded-md p-2 flex
             items-baseline justify-center space-x-2 "
               >

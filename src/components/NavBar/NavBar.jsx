@@ -1,13 +1,12 @@
 import { useContext, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import { ProductsContext } from "../../Context/ProductsContext";
 import logo from "../../assets/images/logo.jpeg";
 import CartModal from "../Cart/CartModal";
-import * as localStore from "../../utility/services/localStorage/localStore";
+import { ShopContext } from "../../Context/shopContext";
 
 export default function NavBar() {
-  const cart = localStore.getCart();
+  const { cart } = useContext(ShopContext);
 
   const [showMobileOption, setShowMobileOption] = useState(false);
 
@@ -72,16 +71,6 @@ export default function NavBar() {
           )}
         </button>
       </div>
-
-      {/* <button
-        className={
-          showMobileOption
-            ? "btn font-medium border-white border-2 text-black rounded p-2  whitespace-nowrap"
-            : "hidden"
-        }
-      >
-        Sign In
-      </button> */}
 
       <CartModal
         showCartModal={showCartModal}

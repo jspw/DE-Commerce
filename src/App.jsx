@@ -1,11 +1,11 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import NavBar from "./components/NavBar/NavBar";
-import ProductsContextProvider from "./Context/ProductsContext";
+import ShopContextProvider from "./Context/shopContext";
 
 function App() {
   return (
-    <ProductsContextProvider>
+    <ShopContextProvider>
       <BrowserRouter>
         <NavBar />
         <Switch>
@@ -14,7 +14,7 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
-    </ProductsContextProvider>
+    </ShopContextProvider>
   );
 }
 
