@@ -6,7 +6,7 @@ import {
 import "react-lazy-load-image-component/src/effects/blur.css";
 import StarRatings from "react-star-ratings";
 import { cartActions } from "../../../utility/cart/constants";
-import { ShopContext } from "../../../Context/shopContext";
+import { ShopContext } from "../../../Context/ShopContext";
 
 export default function Product({
   product: { id, title, price, image, cartCount, rating },

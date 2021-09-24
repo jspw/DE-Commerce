@@ -1,7 +1,8 @@
-import * as localStore from "../../utility/services/localStorage/localStore";
-import Category from "./Catgeory";
+import { useContext } from "react";
+import { CategoryContext } from "../../Context/CategoryContext";
+import Category from "./Category";
 export default function Categories() {
-  const categories = localStore.getCategories();
+  const { categories } = useContext(CategoryContext);
 
   return (
     <div className="container mt-4 space-y-2">

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import MyLoader from "../Loader/MyLoader";
 import Product from "./Product/Product";
-import { ShopContext } from "../../Context/shopContext";
+import { ShopContext } from "../../Context/ShopContext";
 
 export default function Products() {
   const { products } = useContext(ShopContext);

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { ShopContext } from "../../Context/shopContext";
+import { ShopContext } from "../../Context/ShopContext";
 import { cartActions } from "../../utility/cart/constants";
 
 export default function CartItem({

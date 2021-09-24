@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import * as localStore from "../utility/services/localStorage/localStore";
 import {
   addProduct,
@@ -8,22 +8,28 @@ import {
 import { getProducts } from "../api/products";
 import formattingData from "../utility/formattingData";
 import { cartActions } from "../utility/cart/constants";
+import { CategoryActionContext } from "./CategoryContext";
 
 export const ShopContext = createContext();
 
 export default function ShopContextProvider({ children }) {
   const [products, setProducts] = useState(localStore.getProducts());
   const [cart, setCart] = useState(localStore.getCart());
+  const { setCategories } = useContext(CategoryActionContext);
 
   useEffect(function () {
     if (!localStore.isUserOld())
       getProducts()
         .then(function (response) {
-          const { products: formattedProducts } = formattingData(response.data);
+          const { products: formattedProducts, categories } = formattingData(
+            response.data
+          );
+
           setProducts(formattedProducts);
+          setCategories(categories);
         })
         .catch(function (error) {
-          console.log(error.response);
+          console.log(error);
         });
   }, []);
 

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ShopContext } from "../../Context/shopContext";
+import { ShopContext } from "../../Context/ShopContext";
 import CartItems from "./CartItems";
 
 export default function CartModal({ showCartModal, handleCartModal }) {

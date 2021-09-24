@@ -3,7 +3,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.jpeg";
 import CartModal from "../Cart/CartModal";
-import { ShopContext } from "../../Context/shopContext";
+import { ShopContext } from "../../Context/ShopContext";
 
 export default function NavBar() {
   const { cart } = useContext(ShopContext);
