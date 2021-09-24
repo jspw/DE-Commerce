@@ -14,7 +14,7 @@ export default function Product({
   const { handleCart } = useContext(ShopContext);
   return (
     <LazyLoadComponent>
-      <div className="m-2 p-2 col-span-1 cursor-pointer flex flex-col justify-between  hover:shadow-2xl rounded-lg ">
+      <div className="m-2 p-2 col-span-1 cursor-pointer flex flex-col justify-between  hover:shadow-md rounded-lg bg-white ">
         <div className="space-y-4 p-2  flex flex-col justify-between">
           <div className="flex justify-center">
             <LazyLoadImage
