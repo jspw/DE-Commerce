@@ -29,9 +29,8 @@ export function updateProductQuantity(product) {
 export function removeProduct(id) {
   const cart = localStore.getCart();
   const updatedCartProducts = cart.products.filter(
-    (product) => product.id != id
+    (product) => product.id !== id
   );
   localStore.saveCart(cartFormate(updatedCartProducts));
   return cartFormate(updatedCartProducts);
 }
-

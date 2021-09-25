@@ -1,7 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router";
-import { ShopContext } from "../../Context/ShopContext";
-import CartItems from "../Cart/CartItems";
 import * as localStore from "../../utility/services/localStorage/localStore";
 
 export default function OrderPreview() {
