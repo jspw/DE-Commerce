@@ -1,15 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import Products from "../components/Products/Products";
-import { ShopContext } from "../Context/ShopContext";
+import Products from "../Products/Products";
+import { ShopContext } from "../../Context/ShopContext";
 
 export default function Category() {
   const { category } = useParams();
   const { products: allProducts } = useContext(ShopContext);
-  const products = allProducts.filter(
-    (product) => product.category === category
-  );
+  const [products, setProducts] = useState([]);
+
+  useEffect(function () {
+    setProducts(allProducts.filter((product) => product.category === category));
+  }, []);
 
   return (
     <div>
