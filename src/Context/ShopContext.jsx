@@ -34,6 +34,20 @@ export default function ShopContextProvider({ children }) {
   }, []);
 
   function handleCart(actionType, productId) {
+    if (actionType === cartActions.CLEAR_CART) {
+      const updatedProducts = products.map((product) => {
+        product.cartCount = 0;
+        return product;
+      });
+
+      setProducts(updatedProducts);
+      setCart(null);
+      localStore.saveProducts(updatedProducts);
+      localStore.clearOrder();
+      localStore.clearCart();
+      return;
+    }
+
     let updateCart;
     const updatedProducts = products.map((product) => {
       if (product.id === productId) {
@@ -44,10 +58,10 @@ export default function ShopContextProvider({ children }) {
           product.cartCount--;
           if (product.cartCount === 0) updateCart = removeProduct(productId);
           else updateCart = updateProductQuantity(product);
-        } else if (actionType == cartActions.ADD_ITEM) {
+        } else if (actionType === cartActions.ADD_ITEM) {
           product.cartCount++;
           updateCart = addProduct(product);
-        } else if (actionType == cartActions.REMOVE_ITEM) {
+        } else if (actionType === cartActions.REMOVE_ITEM) {
           product.cartCount = 0;
           updateCart = removeProduct(productId);
         }

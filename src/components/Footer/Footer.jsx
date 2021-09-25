@@ -2,7 +2,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 export default function Footer() {
   return (
-    <div className="container m-auto bg-gray-600 pt-10">
+    <div className="bg-gray-600 pt-10 mt-4">
       <div className="flex flex-row p-2 justify-around items-baseline text-white  space-y-4 xs:flex-col sm:flex-col">
         <div>
           <p className="font-medium pb-4">Dynamic E Commerce Innovators Ltd.</p>

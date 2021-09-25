@@ -5,7 +5,7 @@ export default function Categories() {
   const { categories } = useContext(CategoryContext);
 
   return (
-    <div className="container mt-4 space-y-2">
+    <div className=" mt-4 space-y-2 justify-self-center">
       <div className="text-3xl  font-mono font-semibold text-center">
         Featured Category
       </div>

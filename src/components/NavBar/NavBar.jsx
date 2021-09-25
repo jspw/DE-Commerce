@@ -27,7 +27,7 @@ export default function NavBar() {
   };
 
   return (
-    <div className="container m-auto bg-blue-200 p-2 flex flex-row justify-between space-x-4  items-center shadow top-0 z-50 sticky xs:flex-col xs:items-start xs:space-x-0 xs:space-y-2 xs:pb-8">
+    <div className="m-auto bg-blue-200 p-2 flex flex-row justify-between space-x-4  items-center shadow top-0 z-50 sticky xs:flex-col xs:items-start xs:space-x-0 xs:space-y-2 xs:pb-8">
       <div>
         <button
           onClick={toggleHamburgerMenu}

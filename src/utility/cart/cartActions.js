@@ -34,3 +34,4 @@ export function removeProduct(id) {
   localStore.saveCart(cartFormate(updatedCartProducts));
   return cartFormate(updatedCartProducts);
 }
+

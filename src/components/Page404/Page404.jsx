@@ -1,7 +1,7 @@
 import PageNotFoundIcom from "../../assets/images/404.png";
 export default function Page404() {
   return (
-    <div className="container m-auto flex flex-col justify-around items-center space-y-4 p-10">
+    <div className="flex flex-col justify-around items-center space-y-4 p-10">
       <img src={PageNotFoundIcom} />
       <div className="text-4xl">404 ERROR</div>
       <div className="text-gray-500">

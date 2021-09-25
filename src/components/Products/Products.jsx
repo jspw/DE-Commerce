@@ -6,7 +6,7 @@ import { ShopContext } from "../../Context/ShopContext";
 export default function Products() {
   const { products } = useContext(ShopContext);
   return (
-    <div className="space-y-2 mt-8 ">
+    <div className="container m-auto space-y-2 mt-8 ">
       <div className="text-3xl  font-mono font-semibold text-center">
         Products
       </div>

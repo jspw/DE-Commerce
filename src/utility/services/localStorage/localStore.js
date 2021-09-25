@@ -42,13 +42,26 @@ export function clearCart() {
   localStorage.removeItem(constants.CART);
 }
 
+export function saveOrder(order) {
+  localStorage.setItem(constants.ORDER, JSON.stringify(order));
+}
+
+export function getOrder() {
+  const order = localStorage.getItem(constants.ORDER);
+
+  return JSON.parse(order) || null;
+}
+
+export function clearOrder() {
+  localStorage.removeItem(constants.ORDER);
+}
+
 export function setUserOld() {
   localStorage.setItem(constants.IS_USER_OLD, true);
 }
 
 export function isUserOld() {
   const check = localStorage.getItem(constants.IS_USER_OLD);
-  console.log(check);
 
   return check || false;
 }
