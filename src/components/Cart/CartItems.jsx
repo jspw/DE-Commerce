@@ -13,7 +13,7 @@ export default function CartItems() {
     </div>
   ) : (
     <div className="container flex flex-col space-y-2 items-center justify-center  ">
-      <img src={shoppingIcon} className="rounded-full h-48 w-48" />
+      <img src={shoppingIcon} alt="Icon" className="rounded-full h-48 w-48" />
       <p className="text-gray-500">Your cart is empty. Start shopping</p>
     </div>
   );

@@ -14,7 +14,7 @@ export default function OrderSuccess() {
   return (
     <div>
       <div className="m-4 p-4 w flex flex-col justify-center items-center border-l border-r border-green-400 bg-white rounded shadow space-y-6">
-        <img className=" w-1/5" src={OrderCompleteIcon} />
+        <img alt="order complete" className=" w-1/5" src={OrderCompleteIcon} />
         <p className="text-xl  font-medium text-gray-500">
           Order placed successfully !
         </p>

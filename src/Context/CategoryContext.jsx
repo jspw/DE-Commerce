@@ -1,5 +1,4 @@
-import { createContext, useState, useContext } from "react";
-import contextTypes from "./utils/constants";
+import { createContext, useState } from "react";
 import * as localStore from "../utility/services/localStorage/localStore";
 
 export const CategoryContext = createContext();

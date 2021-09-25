@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import Address from "./Address";
 import OrderPreview from "./OrderPreview";
-
-import * as localStore from "../../utility/services/localStorage/localStore";
 import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContext";
 import { cartActions } from "../../utility/cart/constants";

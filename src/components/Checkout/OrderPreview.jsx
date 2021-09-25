@@ -1,7 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router";
-import { ShopContext } from "../../Context/ShopContext";
-import CartItems from "../Cart/CartItems";
 import * as localStore from "../../utility/services/localStorage/localStore";
 
 export default function OrderPreview() {
@@ -15,7 +13,7 @@ export default function OrderPreview() {
 
   useEffect(function () {
     if (!order) history.push("/");
-  }, []);
+  });
 
   return order ? (
     <div className="flex border flex-col justify-center items-center bg-white m-5 p-10 space-y-5 ">

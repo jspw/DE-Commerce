@@ -10,12 +10,6 @@ export default function CartModal({ showCartModal, handleCartModal }) {
   const { cart } = useContext(ShopContext);
   const [isPromoValid, setPromoValid] = useState(false);
 
-  const [order, setOrder] = useState({
-    totalItems: "",
-    subTotal: "",
-    discount: "",
-  });
-
   function saveOrder() {
     const orderCheckout = {
       totalItems: cart.products.length,
@@ -24,7 +18,6 @@ export default function CartModal({ showCartModal, handleCartModal }) {
         : Math.round(cart.payableAmount),
       discount: 100,
     };
-    setOrder(orderCheckout);
     localStore.saveOrder(orderCheckout);
     handleCartModal();
   }
