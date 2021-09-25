@@ -1,4 +1,5 @@
 import { Switch, Route } from "react-router-dom";
+import Category from "../Category/Category";
 import Checkout from "../components/Checkout/Checkout";
 import OrderSuccess from "../components/Checkout/OrderSuccess";
 import Home from "../components/Home/Home";
@@ -10,7 +11,9 @@ export default function AppRoutes() {
       <Route path="/" exact>
         <Home />
       </Route>
-      <Route path="/category/:category" exact></Route>
+      <Route path="/category/:category" exact>
+        <Category />
+      </Route>
       <Route path="/product/:product" exact></Route>
       <Route path="/checkout" exact>
         <Checkout />
