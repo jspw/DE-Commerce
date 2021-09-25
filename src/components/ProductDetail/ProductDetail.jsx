@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ShopContext } from "../../Context/ShopContext";
 import CartAction from "../Products/Product/CartAction";
 import Rating from "../Rating/Rating";
+import Spinner from "../Spinner/Spinner";
 
 export default function ProductDetail() {
   const { title } = useParams();
@@ -13,11 +14,15 @@ export default function ProductDetail() {
 
   const [product, setProduct] = useState({});
 
-  useEffect(function () {
-    setProduct(products.filter((prod) => prod.title === title)[0]);
-  }, []);
+  useEffect(
+    function () {
+      products &&
+        setProduct(products.filter((prod) => prod.title === title)[0]);
+    },
+    [products]
+  );
 
-  return (
+  return product ? (
     <div>
       <div className=" font-medium  flex flex-row space-x-2 mt-2 mb-2">
         <Link to="/" className="text-black hover:text-blue-600">
@@ -34,7 +39,7 @@ export default function ProductDetail() {
         <p className="text-gray-400">{title}</p>
       </div>
       <div className=" grid grid-flow-col  grid-cols-2 sm:grid-cols-1 sm:grid-flow-row xs:grid-flow-row xs:grid-cols-1 bg-white">
-        <div className="col-span-1  flex flex-col justify-center sm:w-full">
+        <div className="col-span-1  p-4 flex flex-col justify-center sm:w-full">
           <LazyLoadImage
             effect="blur"
             className="container m-auto w-1/2 rounded"
@@ -68,5 +73,7 @@ export default function ProductDetail() {
         </div>
       </div>
     </div>
+  ) : (
+    <Spinner />
   );
 }

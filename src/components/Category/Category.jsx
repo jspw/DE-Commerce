@@ -7,11 +7,17 @@ import { ShopContext } from "../../Context/ShopContext";
 export default function Category() {
   const { category } = useParams();
   const { products: allProducts } = useContext(ShopContext);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
 
-  useEffect(function () {
-    setProducts(allProducts.filter((product) => product.category === category));
-  }, []);
+  useEffect(
+    function () {
+      allProducts &&
+        setProducts(
+          allProducts.filter((product) => product.category === category)
+        );
+    },
+    [allProducts]
+  );
 
   return (
     <div>

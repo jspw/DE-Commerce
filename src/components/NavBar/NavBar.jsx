@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.jpeg";
@@ -20,11 +20,13 @@ export default function NavBar() {
     setShowCartModal((pre) => !pre);
   }
 
-  window.onclick = function (event) {
-    if (event.target.id === "modal") {
-      handleCartModal();
-    }
-  };
+  useEffect(function () {
+    window.onclick = function (event) {
+      if (event.target.id === "modal") {
+        handleCartModal();
+      }
+    };
+  }, []);
 
   return (
     <div className="m-auto bg-blue-200 p-2 flex flex-row justify-between space-x-4  items-center shadow top-0 z-50 sticky xs:flex-col xs:items-start xs:space-x-0 xs:space-y-2 xs:pb-8">
