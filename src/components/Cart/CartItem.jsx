@@ -5,7 +5,6 @@ import { cartActions } from "../../utility/cart/constants";
 
 export default function CartItem({
   product: { id, title, image, cartCount, price },
-  setCart,
 }) {
   const { handleCart } = useContext(ShopContext);
 

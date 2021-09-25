@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CategoryContext } from "../../Context/CategoryContext";
+import { CategoryContext } from "../../../Context/CategoryContext";
 import Category from "./Category";
 export default function Categories() {
   const { categories } = useContext(CategoryContext);
