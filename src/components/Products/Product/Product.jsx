@@ -4,8 +4,6 @@ import {
   LazyLoadComponent,
 } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import StarRatings from "react-star-ratings";
-import { cartActions } from "../../../utility/cart/constants";
 import { ShopContext } from "../../../Context/ShopContext";
 import { Link } from "react-router-dom";
 import Rating from "../../Rating/Rating";

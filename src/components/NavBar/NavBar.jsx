@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link, useHistory } from "react-router-dom";
-import logo from "../../assets/images/logo.jpeg";
 import CartModal from "../Cart/CartModal";
 import { ShopContext } from "../../Context/ShopContext";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
@@ -17,7 +15,7 @@ export default function NavBar() {
   const history = useHistory();
 
   function toggleHamburgerMenu() {
-    setShowMobileOption((pre) => !pre);
+    setShowMobileOption(!showMobileOption);
   }
 
   function handleCartModal() {
@@ -69,7 +67,7 @@ export default function NavBar() {
         />
       </div>
       <ReactSearchAutocomplete
-        items={products}
+        items={products || []}
         fuseOptions={{ keys: ["title", "Category"] }}
         onSelect={(e) => {
           history.push(`/product/${e.title}`);

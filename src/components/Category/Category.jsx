@@ -16,7 +16,7 @@ export default function Category() {
           allProducts.filter((product) => product.category === category)
         );
     },
-    [allProducts]
+    [allProducts,category]
   );
 
   return (

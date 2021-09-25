@@ -19,7 +19,7 @@ export default function ProductDetail() {
       products &&
         setProduct(products.filter((prod) => prod.title === title)[0]);
     },
-    [products]
+    [products, title]
   );
 
   return product ? (
