@@ -31,7 +31,7 @@ export default function ShopContextProvider({ children }) {
         .catch(function (error) {
           console.log(error);
         });
-  }, []);
+  });
 
   function handleCart(actionType, productId) {
     if (actionType === cartActions.CLEAR_CART) {
