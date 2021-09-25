@@ -1,5 +1,5 @@
-.body {
-  background-color: grey;
+body {
+  background-color: rgb(160, 196, 232, 0.1);
 }
 
 @tailwind base;

@@ -1,11 +1,12 @@
+import Categories from "../Category/Categories";
 import Products from "../Products/Products";
-import { localProducts } from "../../utility/store";
+import Footer from "../Footer/Footer";
 
 export default function Home() {
-  const products = localProducts;
   return (
-    <div className="container m-auto">
-      <Products products={products} />
+    <div>
+      <Categories />
+      <Products />
     </div>
   );
 }
