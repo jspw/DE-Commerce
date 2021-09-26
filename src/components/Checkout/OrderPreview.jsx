@@ -11,9 +11,7 @@ export default function OrderPreview() {
 
   const order = preOrder || localStore.getOrder();
 
-  useEffect(function () {
-    if (!order) history.push("/");
-  });
+  if (!order) history.push("/");
 
   return order ? (
     <div className="flex border flex-col justify-top items-center bg-white m-5 p-10 space-y-5 ">
