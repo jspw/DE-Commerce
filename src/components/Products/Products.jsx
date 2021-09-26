@@ -3,7 +3,7 @@ import Product from "./Product/Product";
 
 export default function Products({ products }) {
   return (
-    <div className="container m-auto space-y-2 mt-8 ">
+    <div className="container m-auto space-y-2 mt-8">
       <div className="text-3xl  font-mono font-semibold text-center">
         Products
       </div>
