@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useHistory } from "react-router";
 import * as localStore from "../../utility/services/localStorage/localStore";
 
