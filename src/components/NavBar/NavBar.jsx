@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import CartModal from "../Cart/CartModal";
 import { ShopContext } from "../../Context/ShopContext";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export default function NavBar() {
   const { cart } = useContext(ShopContext);
