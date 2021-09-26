@@ -1,6 +1,6 @@
 export default function Address() {
   return (
-    <div className="flex border flex-col justify-center items-center bg-white m-5 p-10 space-y-5 ">
+    <div className="flex border flex-col justify-top items-center bg-white m-5 p-10 space-y-5 ">
       <div>
         <div className="text-xl font-serif font-semibold">Delivery Info</div>
         <hr />

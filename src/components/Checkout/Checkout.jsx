@@ -10,9 +10,9 @@ export default function Checkout() {
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row justify-around  sm:flex-col xs:flex-col">
-        <Address />
+      <div className="flex flex-row justify-center  sm:flex-col xs:flex-col">
         <OrderPreview />
+        <Address />
       </div>
 
       <Link

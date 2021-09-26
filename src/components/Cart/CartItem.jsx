@@ -17,7 +17,7 @@ export default function CartItem({
             effect="blur"
             width="64px"
             height="64px"
-            className="rounded-lg p-1 object-fill"
+            className="rounded-lg p-1 w-16 h-16 object-fill"
           />
         </div>
 

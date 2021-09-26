@@ -23,8 +23,8 @@ export default function ProductDetail() {
   );
 
   return product ? (
-    <div>
-      <div className=" font-medium  flex flex-row space-x-2 mt-2 mb-2">
+    <div className="h-screen">
+      <div className=" font-medium  flex flex-row space-x-2 mt-2 mb-2 ">
         <Link to="/" className="text-black hover:text-blue-600">
           Home
         </Link>
