@@ -8,6 +8,7 @@ import { ShopContext } from "../../../Context/ShopContext";
 import { Link } from "react-router-dom";
 import Rating from "../../Rating/Rating";
 import CartAction from "./CartAction";
+import defaultImage from "../../../assets/images/default_product.png";
 
 export default function Product({ product }) {
   const { handleCart } = useContext(ShopContext);
@@ -22,6 +23,7 @@ export default function Product({ product }) {
             <LazyLoadImage
               src={product.image}
               effect="blur"
+              visibleByDefault={defaultImage}
               className="w-48 h-48 transition duration-700 ease-in-out transform rounded-lg hover:w-50  hover:scale-110"
             />
           </div>
