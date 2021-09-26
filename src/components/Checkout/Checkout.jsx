@@ -3,7 +3,7 @@ import Address from "./Address";
 import OrderPreview from "./OrderPreview";
 import { useContext } from "react";
 import { ShopContext } from "../../Context/ShopContext";
-import { cartActions } from "../../utility/cart/constants";
+import { cartActionTypes } from "../../utility/cart/cartActionTypes";
 
 export default function Checkout() {
   const { handleCart } = useContext(ShopContext);
@@ -16,7 +16,7 @@ export default function Checkout() {
       </div>
 
       <Link
-        onClick={() => handleCart(cartActions.CLEAR_CART)}
+        onClick={() => handleCart(cartActionTypes.CLEAR_CART)}
         to={{
           pathname: "/order-complete",
           done: "done",

@@ -1,24 +1,33 @@
-import { cartActions } from "../../../utility/cart/constants";
+import {
+  cartActions,
+  cartActionTypes,
+} from "../../../utility/cart/cartActionTypes";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
+import { useContext } from "react";
+import { CartContext } from "../../../Context/CartContext";
 
-export default function CartAction({ productId, productQuantity, handleCart }) {
+export default function CartAction({ product }) {
+  const { handleCart, cart } = useContext(CartContext);
+
   return (
     <div className="flex flex-col  justify-center ">
-      {productQuantity > 0 ? (
+      {cart.get(product.id) ? (
         <div className="flex flex-row justify-between border rounded-md p-2 bg-blue-400 items-baseline">
           <button
             className="btn text-white border border-transparent hover:border-white"
             onClick={(e) =>
-              handleCart(cartActions.DECREASE_QUANTITY, productId)
+              handleCart(cartActionTypes.DECREASE_QUANTITY, product)
             }
           >
             <RemoveIcon />
           </button>
-          <p className="text-white font-medium">{productQuantity} in cart</p>
+          <p className="text-white font-medium">
+            {cart.get(product.id).quantity} in cart
+          </p>
           <button
             onClick={(e) =>
-              handleCart(cartActions.INCREASE_QUANTITY, productId)
+              handleCart(cartActionTypes.INCREASE_QUANTITY, product)
             }
             className="btn text-white border border-transparent  hover:border-white"
           >
@@ -27,7 +36,7 @@ export default function CartAction({ productId, productQuantity, handleCart }) {
         </div>
       ) : (
         <button
-          onClick={(e) => handleCart(cartActions.ADD_ITEM, productId)}
+          onClick={(e) => handleCart(cartActionTypes.ADD_ITEM, product)}
           className="btn text-blue-400 border rounded-md p-2 flex
     items-baseline justify-center space-x-2 "
         >

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   LazyLoadImage,
   LazyLoadComponent,
@@ -9,9 +9,17 @@ import { Link } from "react-router-dom";
 import Rating from "../../Rating/Rating";
 import CartAction from "./CartAction";
 import defaultImage from "../../../assets/images/default_product.png";
+import { CartContext } from "../../../Context/CartContext";
 
-export default function Product({ product }) {
-  const { handleCart } = useContext(ShopContext);
+export default function Product(props) {
+  const { cart } = useContext(CartContext);
+
+  const [product, setProduct] = useState(props.product);
+
+  useEffect(function () {
+    if (cart) setProduct(cart.get(props.product.id) ?? props.product);
+  });
+
   return (
     <LazyLoadComponent>
       <div className="m-2 p-2 col-span-1  flex flex-col justify-between  hover:shadow-md rounded-lg bg-white ">
@@ -35,16 +43,12 @@ export default function Product({ product }) {
         </Link>
         <div className="space-y-4">
           <div className="space-y-4 flex flex-col items-center">
-            <Rating rating={product.rating} />
+            <Rating rating={product.rating.rate} />
             <p className="font-semibold text-lg text-blue-500">
               ${product.price}
             </p>
           </div>
-          <CartAction
-            handleCart={handleCart}
-            productId={product.id}
-            productQuantity={product.cartCount}
-          />
+          <CartAction product={product} />
         </div>
       </div>
     </LazyLoadComponent>

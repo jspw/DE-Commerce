@@ -10,17 +10,27 @@ import Spinner from "../Spinner/Spinner";
 export default function ProductDetail() {
   const { title } = useParams();
 
-  const { products, handleCart } = useContext(ShopContext);
+  const { products } = useContext(ShopContext);
 
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState(
+    (products && products.filter((prod) => prod.title === title)[0]) || null
+  );
 
   useEffect(
     function () {
-      products &&
-        setProduct(products.filter((prod) => prod.title === title)[0]);
+      if (products && !product) {
+        for (let i = 0; i < products.length; i++) {
+          if (products[i] === title) {
+            setProduct(products[i]);
+            break;
+          }
+        }
+      }
     },
     [products, title]
   );
+
+  console.log(title, "products", product);
 
   return product ? (
     <div className="h-screen">
@@ -53,18 +63,15 @@ export default function ProductDetail() {
             <p className="text-yellow-300">{product.category}</p>{" "}
           </Link>
           <div>
-            <Rating rating={product.rating} /> ({product.reviews} reviews)
+            <Rating rating={product.rating.rate} /> ({product.rating.count}{" "}
+            reviews)
           </div>
           <div className="flex flex-row space-x-2">
             <p className="text-gray-400">Price : </p>
             <p className="font-medium"> ${product.price}</p>
           </div>
           <div className="ml-5 mr-5">
-            <CartAction
-              handleCart={handleCart}
-              productId={product.id}
-              productQuantity={product.cartCount}
-            />
+            <CartAction product={product} />
           </div>
           <div>
             <p className="text-gray-400">Product Overview : </p>

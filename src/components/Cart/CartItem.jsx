@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { ShopContext } from "../../Context/ShopContext";
-import { cartActions } from "../../utility/cart/constants";
+import { cartActionTypes } from "../../utility/cart/cartActionTypes";
 
 export default function CartItem({
   product: { id, title, image, cartCount, price },
@@ -31,14 +31,14 @@ export default function CartItem({
           </div>
           <div className="flex flex-row space-x-2 text-sm">
             <button
-              onClick={() => handleCart(cartActions.DECREASE_QUANTITY, id)}
+              onClick={() => handleCart(cartActionTypes.DECREASE_QUANTITY, id)}
               className="border pl-3 pr-3"
             >
               -
             </button>
             <div>{cartCount}</div>
             <button
-              onClick={() => handleCart(cartActions.INCREASE_QUANTITY, id)}
+              onClick={() => handleCart(cartActionTypes.INCREASE_QUANTITY, id)}
               className="border pl-3 pr-3"
             >
               +
@@ -47,7 +47,7 @@ export default function CartItem({
         </div>
       </div>
       <div>
-        <button onClick={() => handleCart(cartActions.REMOVE_ITEM, id)}>
+        <button onClick={() => handleCart(cartActionTypes.REMOVE_ITEM, id)}>
           <i className="fa fa-trash text-red-600 p-2"></i>
         </button>
       </div>

@@ -1,13 +1,14 @@
-export default function productFormate({
+export default function productFormatter({
   id,
   title,
   price,
   description,
   image,
   category,
-  cartCount = 0,
-  rating: { rate: rating, count: reviews },
+  quantity = 1,
+  rating,
 }) {
+  console.log("qq",quantity);
   return {
     id,
     title,
@@ -15,8 +16,7 @@ export default function productFormate({
     description,
     category,
     image,
-    cartCount,
+    quantity: quantity || 1,
     rating,
-    reviews,
   };
 }
