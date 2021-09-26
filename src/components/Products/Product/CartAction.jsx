@@ -1,4 +1,6 @@
 import { cartActions } from "../../../utility/cart/constants";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function CartAction({ productId, productQuantity, handleCart }) {
   return (
@@ -6,21 +8,21 @@ export default function CartAction({ productId, productQuantity, handleCart }) {
       {productQuantity > 0 ? (
         <div className="flex flex-row justify-between border rounded-md p-2 bg-blue-400 items-baseline">
           <button
-            className="btn text-white "
+            className="btn text-white border border-transparent hover:border-white"
             onClick={(e) =>
               handleCart(cartActions.DECREASE_QUANTITY, productId)
             }
           >
-            <i className="	fas fa-cart-arrow-down"></i>
+            <RemoveIcon />
           </button>
           <p className="text-white font-medium">{productQuantity} in cart</p>
           <button
             onClick={(e) =>
               handleCart(cartActions.INCREASE_QUANTITY, productId)
             }
-            className="btn text-white"
+            className="btn text-white border border-transparent  hover:border-white"
           >
-            <i className="fas fa-cart-plus"></i>
+            <AddIcon />
           </button>
         </div>
       ) : (
