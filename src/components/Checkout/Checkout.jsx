@@ -9,7 +9,7 @@ export default function Checkout() {
   const { handleCart } = useContext(ShopContext);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <div className="flex flex-row justify-center  sm:flex-col xs:flex-col">
         <OrderPreview />
         <Address />
