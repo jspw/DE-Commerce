@@ -23,7 +23,7 @@ export default function ShopContextProvider({ children }) {
         .catch(function (error) {
           console.log(error);
         });
-  }, []);
+  });
   return (
     <ShopContext.Provider value={{ products }}>{children}</ShopContext.Provider>
   );
