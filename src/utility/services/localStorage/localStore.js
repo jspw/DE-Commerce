@@ -29,16 +29,13 @@ export function clearCategories() {
 }
 
 export function saveCart(cart) {
-  localStorage.setItem(
-    constants.CART,
-    JSON.stringify(Array.from(cart.entries()))
-  );
+  localStorage.setItem(constants.CART, JSON.stringify(cart));
 }
 
 export function getCart() {
   const cart = localStorage.getItem(constants.CART);
 
-  return new Map(JSON.parse(cart)) || null;
+  return JSON.parse(cart) || null;
 }
 
 export function clearCart() {

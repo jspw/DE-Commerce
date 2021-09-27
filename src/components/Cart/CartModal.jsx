@@ -6,15 +6,16 @@ import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { Link } from "react-router-dom";
 import * as localStore from "../../utility/services/localStorage/localStore";
 import { ModalContext } from "../../Context/ModalContext";
+import { CartContext } from "../../Context/CartContext";
 
 export default function CartModal() {
-  const { cart } = useContext(ShopContext);
+  const cart = localStore.getCart();
   const { showModal, setShowModal } = useContext(ModalContext);
   const [isPromoValid, setPromoValid] = useState(false);
 
   function saveOrder() {
     const orderCheckout = {
-      totalItems: cart.products.length,
+      totalItems: cart.totalQuantity.length,
       subTotal: isPromoValid
         ? Math.round(cart.payableAmount) - 100
         : Math.round(cart.payableAmount),
@@ -38,7 +39,7 @@ export default function CartModal() {
               <div className="p-4 flex flex-row items-center space-x-2">
                 <LocalMallIcon />
                 <div className="text-lg font-semibold">
-                  {cart ? cart.products.length : 0} items
+                  {cart ? cart.totalProducts : 0} items
                 </div>
               </div>
               <div>
@@ -83,10 +84,11 @@ export default function CartModal() {
               to={{
                 pathname: "/checkout",
                 order: {
-                  totalItems: cart.products.length,
-                  subTotal: isPromoValid
-                    ? Math.round(cart.payableAmount) - 100
-                    : Math.round(cart.payableAmount),
+                  totalItems: cart.size,
+                  subTotal: 0,
+                  // isPromoValid
+                  //   ? Math.round(cart.payableAmount) - 100
+                  //   : Math.round(cart.payableAmount),
                   discount: 100,
                 },
               }}

@@ -1,36 +1,62 @@
-// import * as localStore from "../services/localStorage/localStore";
-// import { cartFormatter, cartProductFormate } from "./cartFormatter";
+import * as localStore from "../services/localStorage/localStore";
+import { cartActionTypes } from "./cartActionTypes";
+import { cartFormatter } from "./cartFormatter";
+import productFormatter from "../product/productFormatter";
 
-// export function addProduct(product) {
-//   const cart = localStore.getCart();
-//   let updatedCartProducts = [];
-//   if (cart) {
-//     updatedCartProducts = [...cart.products, cartProductFormate(product)];
-//   } else
-//     updatedCartProducts = [...updatedCartProducts, cartProductFormate(product)];
+export default function handleCart(actionType, product) {
+  const cart = localStore.getCart();
 
-//   localStore.saveCart(cartFormate(updatedCartProducts));
-//   return cartFormate(updatedCartProducts);
-// }
+  let cartProducts = {};
 
-// export function updateProductQuantity(product) {
-//   const cart = localStore.getCart();
-//   const updatedCartProducts = cart.products.map((prod) => {
-//     if (prod.id === product.id) {
-//       return cartProductFormate(product);
-//     }
-//     return cartProductFormate(prod);
-//   });
+  switch (actionType) {
+    case cartActionTypes.ADD_ITEM: {
+      if (cart)
+        cartProducts = {
+          ...cart.products,
+          [product.id]: productFormatter(product),
+        };
+      else
+        cartProducts = {
+          [product.id]: productFormatter(product),
+        };
 
-//   localStore.saveCart(cartFormate(updatedCartProducts));
-//   return cartFormate(updatedCartProducts);
-// }
+      break;
+    }
+    case cartActionTypes.INCREASE_QUANTITY: {
+      cart.products[product.id].quantity++;
 
-// export function removeProduct(id) {
-//   const cart = localStore.getCart();
-//   const updatedCartProducts = cart.products.filter(
-//     (product) => product.id !== id
-//   );
-//   localStore.saveCart(cartFormate(updatedCartProducts));
-//   return cartFormate(updatedCartProducts);
-// }
+      cartProducts = {
+        ...cart.products,
+      };
+
+      break;
+    }
+    case cartActionTypes.DECREASE_QUANTITY: {
+      if (cart.products[product.id].quantity === 1) {
+        delete cart.products[product.id];
+      } else {
+        cart.products[product.id].quantity--;
+      }
+      cartProducts = {
+        ...cart.products,
+      };
+
+      break;
+    }
+
+    case cartActionTypes.REMOVE_ITEM: {
+      delete cart.products[product.id];
+      cartProducts = {
+        ...cart.products,
+      };
+      break;
+    }
+
+    case cartActionTypes.CLEAR_CART: {
+      cartProducts = {};
+      break;
+    }
+  }
+
+  localStore.saveCart(cartFormatter(cartProducts));
+}

@@ -1,17 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CartModal from "../Cart/CartModal";
-import { ShopContext } from "../../Context/ShopContext";
 import { ModalContext } from "../../Context/ModalContext";
+import { CartContext } from "../../Context/CartContext";
+import * as localStore from "../../utility/services/localStorage/localStore";
 
 export default function NavBar() {
-  const { cart } = useContext(ShopContext);
+  const cart = localStore.getCart();
+  const { setCartModified } = useContext(CartContext);
   const [showMobileOption, setShowMobileOption] = useState(false);
   const { setShowModal } = useContext(ModalContext);
+
   function toggleHamburgerMenu() {
     setShowMobileOption(!showMobileOption);
   }
   useEffect(function () {
+    console.log(setCartModified);
     window.onclick = function (event) {
       if (event.target.id === "modal") {
         setShowModal(false);
@@ -48,7 +52,7 @@ export default function NavBar() {
               </svg>
               {cart && (
                 <span className="absolute right-0 rounded-full bg-red-600 w-4 h-4 top right p-0 m-0 text-white font-mono text-sm font-semibold  leading-tight text-center">
-                  {cart.products.length}
+                  {cart.totalProducts}
                 </span>
               )}
             </button>
