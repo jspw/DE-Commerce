@@ -1,31 +1,49 @@
-import { cartActions } from "../../../utility/cart/constants";
+import {
+  cartActionTypes,
+} from "../../../utility/cart/cartActionTypes";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
+import { useContext } from "react";
+import { CartContext } from "../../../Context/CartContext";
+import handleCart from "../../../utility/cart/cartActions";
+import * as localStore from "../../../utility/services/localStorage/localStore";
 
-export default function CartAction({ productId, productQuantity, handleCart }) {
+export default function CartAction({ product }) {
+  const { setCartUpdated } = useContext(CartContext);
+  const cart = localStore.getCart();
+
   return (
     <div className="flex flex-col  justify-center ">
-      {productQuantity > 0 ? (
+      {cart && cart.products[product.id] ? (
         <div className="flex flex-row justify-between border rounded-md p-2 bg-blue-400 items-baseline">
           <button
-            className="btn text-white "
-            onClick={(e) =>
-              handleCart(cartActions.DECREASE_QUANTITY, productId)
-            }
+            className="btn text-white border border-transparent hover:border-white"
+            onClick={() => {
+              handleCart(cartActionTypes.DECREASE_QUANTITY, product);
+              setCartUpdated((isModified) => !isModified);
+            }}
           >
-            <i className="	fas fa-cart-arrow-down"></i>
+            <RemoveIcon />
           </button>
-          <p className="text-white font-medium">{productQuantity} in cart</p>
+          <p className="text-white font-medium">
+            {cart.products[product.id].quantity} in cart
+          </p>
           <button
-            onClick={(e) =>
-              handleCart(cartActions.INCREASE_QUANTITY, productId)
-            }
-            className="btn text-white"
+            onClick={() => {
+              handleCart(cartActionTypes.INCREASE_QUANTITY, product);
+              setCartUpdated((isModified) => !isModified);
+            }}
+            className="btn text-white border border-transparent  hover:border-white"
           >
-            <i className="fas fa-cart-plus"></i>
+            <AddIcon />
           </button>
         </div>
       ) : (
         <button
-          onClick={(e) => handleCart(cartActions.ADD_ITEM, productId)}
+          onClick={() => {
+            handleCart(cartActionTypes.ADD_ITEM, product);
+            setCartUpdated((isModified) => !isModified);
+          }}
           className="btn text-blue-400 border rounded-md p-2 flex
     items-baseline justify-center space-x-2 "
         >
