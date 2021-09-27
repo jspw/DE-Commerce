@@ -3,7 +3,7 @@ export function cartFormatter(products) {
   let totalProducts = 0;
   let totalQuantity = 0;
 
-  Object.values(products).map((product) => {
+  Object.values(products).forEach((product) => {
     totalProducts++;
     totalQuantity = +product.quantity;
     payableAmount += product.price * product.quantity;

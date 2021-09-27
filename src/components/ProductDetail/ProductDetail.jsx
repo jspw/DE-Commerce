@@ -27,10 +27,8 @@ export default function ProductDetail() {
         }
       }
     },
-    [products, title]
+    [products, title, product]
   );
-
-  console.log(title, "products", product);
 
   return product ? (
     <div className="h-screen">

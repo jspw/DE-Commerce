@@ -56,6 +56,8 @@ export default function handleCart(actionType, product) {
       cartProducts = {};
       break;
     }
+
+    default:
   }
 
   localStore.saveCart(cartFormatter(cartProducts));

@@ -1,12 +1,10 @@
 import { useContext, useState } from "react";
-import { ShopContext } from "../../Context/ShopContext";
 import CartItems from "./CartItems";
 import CancelIcon from "@mui/icons-material/Cancel";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { Link } from "react-router-dom";
 import * as localStore from "../../utility/services/localStorage/localStore";
 import { ModalContext } from "../../Context/ModalContext";
-import { CartContext } from "../../Context/CartContext";
 
 export default function CartModal() {
   const cart = localStore.getCart();

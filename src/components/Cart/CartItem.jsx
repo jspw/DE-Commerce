@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { CartContext } from "../../Context/CartContext";
-import { ShopContext } from "../../Context/ShopContext";
 import handleCart from "../../utility/cart/cartActions";
 import { cartActionTypes } from "../../utility/cart/cartActionTypes";
 

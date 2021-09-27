@@ -1,9 +1,6 @@
-import { useContext } from "react";
-import { ShopContext } from "../../Context/ShopContext";
 import CartItem from "./CartItem";
 import shoppingIcon from "../../assets/images/shopping.png";
 import * as localStore from "../../utility/services/localStorage/localStore";
-import { CartContext } from "../../Context/CartContext";
 
 export default function CartItems() {
   const cart = localStore.getCart();
