@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { CartContext } from "../../Context/CartContext";
+import { StateContext } from "../../Context/StateContext";
 import handleCart from "../../utility/cart/cartActions";
 import { cartActionTypes } from "../../utility/cart/cartActionTypes";
 
 export default function CartItem({ product }) {
-  const { setCartUpdated } = useContext(CartContext);
+  const { setStateChanged } = useContext(StateContext);
   return (
     <div className="flex flex-row justify-between items-center m-2 p-2 shadow">
       <div className="flex flex-row space-x-2 items-center justify-around align-center">
@@ -33,7 +33,7 @@ export default function CartItem({ product }) {
             <button
               onClick={() => {
                 handleCart(cartActionTypes.DECREASE_QUANTITY, product);
-                setCartUpdated((pre) => !pre);
+                setStateChanged((pre) => !pre);
               }}
               className="border pl-3 pr-3"
             >
@@ -43,7 +43,7 @@ export default function CartItem({ product }) {
             <button
               onClick={() => {
                 handleCart(cartActionTypes.INCREASE_QUANTITY, product);
-                setCartUpdated((pre) => !pre);
+                setStateChanged((pre) => !pre);
               }}
               className="border pl-3 pr-3"
             >
@@ -56,7 +56,7 @@ export default function CartItem({ product }) {
         <button
           onClick={() => {
             handleCart(cartActionTypes.REMOVE_ITEM, product);
-            setCartUpdated((pre) => !pre);
+            setStateChanged((pre) => !pre);
           }}
         >
           <i className="fa fa-trash text-red-600 p-2"></i>

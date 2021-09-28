@@ -1,5 +1,13 @@
-import Wrapper from "./components/Wrapper/Wrapper";
+import Wrapper from "./Navigation/Wrapper";
+import ModalContextProvider from "./Context/ModalContext";
+import StateContextProvider from "./Context/StateContext";
 
 export default function App() {
-  return <Wrapper />;
+  return (
+    <ModalContextProvider>
+      <StateContextProvider>
+        <Wrapper />
+      </StateContextProvider>
+    </ModalContextProvider>
+  );
 }

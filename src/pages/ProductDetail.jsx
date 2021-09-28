@@ -1,37 +1,20 @@
-import { useContext, useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { ShopContext } from "../../Context/ShopContext";
-import CartAction from "../Products/Product/CartAction";
-import Rating from "../Rating/Rating";
-import Spinner from "../Spinner/Spinner";
+import CartAction from "../components/Products/Product/CartAction";
+import Rating from "../components/Rating/Rating";
+import Spinner from "../components/Spinner/Spinner";
+import * as localStore from "../utility/services/localStorage/localStore";
 
 export default function ProductDetail() {
   const { title } = useParams();
 
-  const { products } = useContext(ShopContext);
-
-  const [product, setProduct] = useState(
-    (products && products.filter((prod) => prod.title === title)[0]) || null
-  );
-
-  useEffect(
-    function () {
-      if (products && !product) {
-        for (let i = 0; i < products.length; i++) {
-          if (products[i] === title) {
-            setProduct(products[i]);
-            break;
-          }
-        }
-      }
-    },
-    [products, title, product]
-  );
+  const product = localStore
+    .getProducts()
+    .filter((prod) => prod.title === title)[0];
 
   return product ? (
-    <div className="h-screen">
+    <div>
       <div className=" font-medium  flex flex-row space-x-2 mt-2 mb-2 ">
         <Link to="/" className="text-black hover:text-blue-600">
           Home
