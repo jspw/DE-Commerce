@@ -53,10 +53,88 @@ Good Luck!
 ## Codebase Structure
 
 ```
-
+src
+├── api
+│   ├── client.js
+│   └── products.js
+├── App.jsx
+├── assets
+│   └── images
+│       ├── 404.png
+│       ├── default_product.png
+│       ├── logo.jpeg
+│       ├── order-complete.png
+│       └── shopping.png
+├── components
+│   ├── Cart
+│   │   ├── CartItem.jsx
+│   │   ├── CartItems.jsx
+│   │   └── CartModal.jsx
+│   ├── Category
+│   │   ├── Categories.jsx
+│   │   └── Category.jsx
+│   ├── Checkout
+│   │   ├── Address.jsx
+│   │   └── OrderPreview.jsx
+│   ├── Footer
+│   │   └── Footer.jsx
+│   ├── Loader
+│   │   └── MyLoader.jsx
+│   ├── NavBar
+│   │   └── NavBar.jsx
+│   ├── Products
+│   │   ├── Product
+│   │   │   ├── CartAction.jsx
+│   │   │   └── Product.jsx
+│   │   └── Products.jsx
+│   ├── Rating
+│   │   └── Rating.jsx
+│   ├── SearchBar
+│   │   └── SearchBar.jsx
+│   └── Spinner
+│       └── Spinner.jsx
+├── Context
+│   ├── ModalContext.jsx
+│   └── StateContext.jsx
+├── hooks
+│   └── useFetch.jsx
+├── index.css
+├── index.js
+├── Navigation
+│   ├── AppRoutes.jsx
+│   └── Wrapper.jsx
+├── pages
+│   ├── Category.jsx
+│   ├── Checkout.jsx
+│   ├── Home.jsx
+│   ├── OrderSuccess.jsx
+│   ├── Page404.jsx
+│   └── ProductDetail.jsx
+└── utility
+    ├── cart
+    │   ├── cartActions.js
+    │   ├── cartActionTypes.js
+    │   ├── cartFormatter.js
+    │   └── orderFormatter.js
+    ├── product
+    │   ├── productActions.js
+    │   └── productFormatter.js
+    └── services
+        └── localStorage
+            ├── constants.js
+            ├── initLocalStorage.js
+            └── localStore.js
 
 ```
 
 ## Screenshots
 
 ### Desktop
+
+![](screenshots/home.png)
+![](screenshots/search.png)
+![](screenshots/product.png)
+![](screenshots/category.png)
+![](screenshots/checkout.png)
+![](screenshots/order-complete.png)
+![](screenshots/404.png)
