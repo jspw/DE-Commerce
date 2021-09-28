@@ -1,8 +1,10 @@
 import { useContext } from "react";
-import { CategoryContext } from "../../../Context/CategoryContext";
 import Category from "./Category";
+import * as localStore from "../../utility/services/localStorage/localStore";
+import { StateContext } from "../../Context/StateContext";
 export default function Categories() {
-  const { categories } = useContext(CategoryContext);
+  useContext(StateContext);
+  const categories = localStore.getCategories();
 
   return (
     <div className=" mt-4 space-y-2 justify-self-center">

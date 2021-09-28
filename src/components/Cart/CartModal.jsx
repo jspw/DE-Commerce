@@ -5,11 +5,15 @@ import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { Link } from "react-router-dom";
 import * as localStore from "../../utility/services/localStorage/localStore";
 import { ModalContext } from "../../Context/ModalContext";
+import handleCart from "../../utility/cart/cartActions";
+import { cartActionTypes } from "../../utility/cart/cartActionTypes";
+import { StateContext } from "../../Context/StateContext";
 
 export default function CartModal() {
   const cart = localStore.getCart();
   const { showModal, setShowModal } = useContext(ModalContext);
   const [isPromoValid, setPromoValid] = useState(false);
+  const { setStateChanged } = useContext(StateContext);
 
   function saveOrder() {
     const orderCheckout = {
@@ -32,18 +36,18 @@ export default function CartModal() {
     >
       <div className="fixed right-0 bg-white  h-full overflow-y-auto duration-500 animate-slideIn flex flex-col justify-between  sm:w-full md:w-2/5 lg:w-4/12 xl:w-1/4 ">
         <div>
-          <div className="sticky top-0 bg-gray-400 z-40 ">
+          <div className="sticky top-0 bg-gray-600 z-40 ">
             <div className="flex flex-row justify-between items-center ">
               <div className="p-4 flex flex-row items-center space-x-2">
-                <LocalMallIcon />
-                <div className="text-lg font-semibold">
+                <LocalMallIcon htmlColor="white" />
+                <div className="text-lg font-semibold text-white">
                   {cart ? cart.totalProducts : 0} items
                 </div>
               </div>
               <div>
                 <button
                   onClick={() => setShowModal(false)}
-                  className="btn btn-close p-4 text-xl text-gray-400"
+                  className="btn btn-close p-4 text-xl "
                 >
                   <CancelIcon htmlColor="white" />
                 </button>
@@ -57,19 +61,21 @@ export default function CartModal() {
         {cart && (
           <div className="flex flex-col sticky bottom-0">
             <div className="bg-gray-200 ">
-              <p className="text-green-500 mb-3 ml-1 mr-1 mt-2 text-center">
-                Do you have a Promo Code ?
+              <p className="text-green-500 mt-1 text-center">
+                {isPromoValid
+                  ? "Promo Code Used as"
+                  : " Do you have a Promo Code ?"}
               </p>
-              <div className="flex flex-row justify-center">
+              <div className="flex flex-row justify-center items-baseline">
                 <input
                   disabled={isPromoValid}
                   placeholder="Promo Code"
-                  className="outline-none appearance-none mb-3 ml-1 mr-1 mt-2 rounded p-2 max-w-min focus:border-blue-400"
+                  className="outline-none appearance-none rounded m-1  p-1 max-w-min focus:border-blue-400"
                 />
                 <div>
                   <button
                     onClick={() => setPromoValid(true)}
-                    className="btn bg-blue-700 text-white rounded m3-2 ml-1 mr-1 mt-2 p-2"
+                    className="btn bg-blue-700 text-white rounded p-1"
                   >
                     Go
                   </button>
@@ -77,29 +83,46 @@ export default function CartModal() {
               </div>
             </div>
 
-            <Link
-              onClick={saveOrder}
-              to={{
-                pathname: "/checkout",
-                order: {
-                  totalItems: cart.size,
-                  subTotal: 0,
-                  // isPromoValid
-                  //   ? Math.round(cart.payableAmount) - 100
-                  //   : Math.round(cart.payableAmount),
-                  discount: 100,
-                },
-              }}
-              className="flex flex-row justify-between btn bg-blue-400 font-semibold text-white p-3"
-            >
-              <p> Checkout</p>
-              <p className="font-bold">
+            <div className="flex flex-row justify-between m-2 p-1">
+              <p className="text-yellow-900 font-medium">Payable Amount : </p>
+              <p className="font-bold text-yellow-900">
                 $
                 {isPromoValid
                   ? Math.round(cart.payableAmount) - 100
                   : Math.round(cart.payableAmount)}
               </p>
-            </Link>
+            </div>
+
+            <hr />
+
+            <div className="m-2 flex flex-row justify-between">
+              <button
+                onClick={() => {
+                  handleCart(cartActionTypes.CLEAR_CART);
+                  setStateChanged((pre) => !pre);
+                }}
+                className=" text-center font-serif text-base btn bg-red-400  text-white p-2 rounded"
+              >
+                Clear Cart
+              </button>
+
+              <Link
+                onClick={saveOrder}
+                to={{
+                  pathname: "/checkout",
+                  order: {
+                    totalItems: cart.totalQuantity,
+                    subTotal: isPromoValid
+                      ? Math.round(cart.payableAmount) - 100
+                      : Math.round(cart.payableAmount),
+                    discount: 100,
+                  },
+                }}
+                className="flex flex-row justify-between btn bg-blue-400 font-semibold text-white p-3"
+              >
+                <p> Checkout</p>
+              </Link>
+            </div>
           </div>
         )}
       </div>

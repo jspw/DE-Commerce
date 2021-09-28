@@ -7,7 +7,7 @@ export function saveProducts(products) {
 export function getProducts() {
   const products = localStorage.getItem(constants.PRODUCTS);
 
-  return JSON.parse(products) || null;
+  return JSON.parse(products) || [];
 }
 
 export function clearProducts() {
@@ -21,7 +21,7 @@ export function saveCategories(categories) {
 export function getCategories() {
   const categories = localStorage.getItem(constants.CATEGORIES);
 
-  return JSON.parse(categories) || null;
+  return JSON.parse(categories) || [];
 }
 
 export function clearCategories() {

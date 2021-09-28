@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import { useHistory } from "react-router";
 import ReactSearchAutocomplete from "react-search-autocomplete/dist/components/ReactSearchAutocomplete";
-import { ShopContext } from "../../Context/ShopContext";
+import * as localStore from "../../utility/services/localStorage/localStore";
 
 export default function SearchBar() {
-  const { products } = useContext(ShopContext);
   const history = useHistory();
+  const products = localStore.getProducts();
 
   return (
     <div className="container ml-auto mr-auto mt-4">

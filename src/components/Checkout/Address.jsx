@@ -1,4 +1,11 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { StateContext } from "../../Context/StateContext";
+import handleCart from "../../utility/cart/cartActions";
+import { cartActionTypes } from "../../utility/cart/cartActionTypes";
+
 export default function Address() {
+  const { setStateChanged } = useContext(StateContext);
   return (
     <div className="flex border flex-col justify-top items-center bg-white m-5 p-10 space-y-5 ">
       <div>
@@ -56,9 +63,21 @@ export default function Address() {
         </div>
       </form>
 
-      <button className="btn bg-blue-400 text-white p-2 rounded font-medium">
-        Confirm Address
-      </button>
+      <div className="h-5"></div>
+
+      <Link
+        onClick={() => {
+          handleCart(cartActionTypes.CLEAR_CART);
+          setStateChanged((pre) => !pre);
+        }}
+        to={{
+          pathname: "/order-complete",
+          done: "done",
+        }}
+        className="btn  container bg-blue-500 text-white p-1 mt-5 shadow text-center"
+      >
+        Place Order
+      </Link>
     </div>
   );
 }

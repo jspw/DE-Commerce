@@ -1,15 +1,13 @@
-import {
-  cartActionTypes,
-} from "../../../utility/cart/cartActionTypes";
+import { cartActionTypes } from "../../../utility/cart/cartActionTypes";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { useContext } from "react";
-import { CartContext } from "../../../Context/CartContext";
 import handleCart from "../../../utility/cart/cartActions";
 import * as localStore from "../../../utility/services/localStorage/localStore";
+import { StateContext } from "../../../Context/StateContext";
 
 export default function CartAction({ product }) {
-  const { setCartUpdated } = useContext(CartContext);
+  const { setStateChanged } = useContext(StateContext);
   const cart = localStore.getCart();
 
   return (
@@ -20,7 +18,7 @@ export default function CartAction({ product }) {
             className="btn text-white border border-transparent hover:border-white"
             onClick={() => {
               handleCart(cartActionTypes.DECREASE_QUANTITY, product);
-              setCartUpdated((isModified) => !isModified);
+              setStateChanged((isModified) => !isModified);
             }}
           >
             <RemoveIcon />
@@ -31,7 +29,7 @@ export default function CartAction({ product }) {
           <button
             onClick={() => {
               handleCart(cartActionTypes.INCREASE_QUANTITY, product);
-              setCartUpdated((isModified) => !isModified);
+              setStateChanged((isModified) => !isModified);
             }}
             className="btn text-white border border-transparent  hover:border-white"
           >
@@ -42,7 +40,7 @@ export default function CartAction({ product }) {
         <button
           onClick={() => {
             handleCart(cartActionTypes.ADD_ITEM, product);
-            setCartUpdated((isModified) => !isModified);
+            setStateChanged((isModified) => !isModified);
           }}
           className="btn text-blue-400 border rounded-md p-2 flex
     items-baseline justify-center space-x-2 "

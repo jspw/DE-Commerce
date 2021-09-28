@@ -1,8 +1,8 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import OrderCompleteIcon from "../../assets/images/order-complete.png";
-import defaultImage from "../../assets/images/default_product.png";
+import OrderCompleteIcon from "../assets/images/order-complete.png";
+import defaultImage from "../assets/images/default_product.png";
 
 export default function OrderSuccess() {
   const history = useHistory();
