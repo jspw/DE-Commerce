@@ -7,7 +7,7 @@ import { StateContext } from "../../Context/StateContext";
 
 export default function NavBar() {
   const cart = localStore.getCart();
-  const { setStateChanged } = useContext(StateContext);
+useContext(StateContext);
   const [showMobileOption, setShowMobileOption] = useState(false);
   const { setShowModal } = useContext(ModalContext);
 
@@ -15,7 +15,6 @@ export default function NavBar() {
     setShowMobileOption(!showMobileOption);
   }
   useEffect(function () {
-    console.log(setStateChanged);
     window.onclick = function (event) {
       if (event.target.id === "modal") {
         setShowModal(false);
